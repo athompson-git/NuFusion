@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="1" name="SS316L" temperature="600">
+    <density units="g/cm3" value="8.0"/>
+    <nuclide ao="0.039746000000000004" name="Fe54"/>
+    <nuclide ao="0.6239272" name="Fe56"/>
+    <nuclide ao="0.014409200000000002" name="Fe57"/>
+    <nuclide ao="0.0019176000000000002" name="Fe58"/>
+    <nuclide ao="0.007821" name="Cr50"/>
+    <nuclide ao="0.1508202" name="Cr52"/>
+    <nuclide ao="0.0171018" name="Cr53"/>
+    <nuclide ao="0.004257" name="Cr54"/>
+    <nuclide ao="0.08169227999999999" name="Ni58"/>
+    <nuclide ao="0.03146772" name="Ni60"/>
+    <nuclide ao="0.00136788" name="Ni61"/>
+    <nuclide ao="0.0043614000000000005" name="Ni62"/>
+    <nuclide ao="0.00111072" name="Ni64"/>
+    <nuclide ao="0.0029298" name="Mo92"/>
+    <nuclide ao="0.0018373999999999999" name="Mo94"/>
+    <nuclide ao="0.0031746" name="Mo95"/>
+    <nuclide ao="0.0033346" name="Mo96"/>
+    <nuclide ao="0.0019164000000000002" name="Mo97"/>
+    <nuclide ao="0.0048584" name="Mo98"/>
+    <nuclide ao="0.0019488" name="Mo100"/>
+    <nuclide ao="0.01" name="Mn55"/>
+    <nuclide ao="0.001" name="C0"/>
+  </material>
+  <material id="2" name="Be" temperature="600">
+    <density units="g/cm3" value="1.85"/>
+    <nuclide ao="1.0" name="Be9"/>
+  </material>
+  <material id="3" name="Li17Pb83" temperature="800">
+    <density units="g/cm3" value="10.2"/>
+    <nuclide ao="0.085" name="Li6"/>
+    <nuclide ao="0.085" name="Li7"/>
+    <nuclide ao="0.01162" name="Pb204"/>
+    <nuclide ao="0.20002999999999999" name="Pb206"/>
+    <nuclide ao="0.18342999999999998" name="Pb207"/>
+    <nuclide ao="0.43492" name="Pb208"/>
+  </material>
+  <material id="5" name="Concrete" temperature="300">
+    <density units="g/cm3" value="2.3"/>
+    <nuclide ao="0.5198029200000001" name="O16"/>
+    <nuclide ao="0.00019708" name="O17"/>
+    <nuclide ao="0.29974646" name="Si28"/>
+    <nuclide ao="0.015220270000000001" name="Si29"/>
+    <nuclide ao="0.01003327" name="Si30"/>
+    <nuclide ao="0.0581646" name="Ca40"/>
+    <nuclide ao="0.0003882" name="Ca42"/>
+    <nuclide ao="8.1e-05" name="Ca43"/>
+    <nuclide ao="0.0012516" name="Ca44"/>
+    <nuclide ao="2.4000000000000003e-06" name="Ca46"/>
+    <nuclide ao="0.00011219999999999999" name="Ca48"/>
+    <nuclide ao="0.045" name="Al27"/>
+    <nuclide ao="0.0011690000000000001" name="Fe54"/>
+    <nuclide ao="0.0183508" name="Fe56"/>
+    <nuclide ao="0.0004238" name="Fe57"/>
+    <nuclide ao="5.64e-05" name="Fe58"/>
+  </material>
+  <material id="6" name="ShieldMix">
+    <density units="g/cm3" value="3.7981999999999987"/>
+    <nuclide ao="0.42427320236090216" name="H1"/>
+    <nuclide ao="6.608660086290528e-05" name="H2"/>
+    <nuclide ao="0.21208923218562425" name="O16"/>
+    <nuclide ao="8.041229525825448e-05" name="O17"/>
+    <nuclide ao="0.014290124561215166" name="Fe54"/>
+    <nuclide ao="0.22432439503673846" name="Fe56"/>
+    <nuclide ao="0.005180628562055592" name="Fe57"/>
+    <nuclide ao="0.0006894465571022543" name="Fe58"/>
+    <nuclide ao="0.002811932375415483" name="Cr50"/>
+    <nuclide ao="0.05422531687081424" name="Cr52"/>
+    <nuclide ao="0.0061487156499016125" name="Cr53"/>
+    <nuclide ao="0.0015305454701628582" name="Cr54"/>
+    <nuclide ao="0.029371329363701158" name="Ni58"/>
+    <nuclide ao="0.011313783486575794" name="Ni60"/>
+    <nuclide ao="0.0004918023344435918" name="Ni61"/>
+    <nuclide ao="0.0015680810461753088" name="Ni62"/>
+    <nuclide ao="0.0003993440133002795" name="Ni64"/>
+    <nuclide ao="0.0010533690670620488" name="Mo92"/>
+    <nuclide ao="0.0006606117563723832" name="Mo94"/>
+    <nuclide ao="0.0011413835211602087" name="Mo95"/>
+    <nuclide ao="0.0011989093081524703" name="Mo96"/>
+    <nuclide ao="0.0006890151136998124" name="Mo97"/>
+    <nuclide ao="0.0017467705220200209" name="Mo98"/>
+    <nuclide ao="0.0007006640855657454" name="Mo100"/>
+    <nuclide ao="0.003595361687016345" name="Mn55"/>
+    <nuclide ao="0.00035953616870163446" name="C0"/>
+  </material>
+</materials>

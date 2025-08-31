@@ -29,7 +29,8 @@ import openmc
 ########################
 
 def build_materials():
-    mats = openmc.Materials()
+    mats = {}
+    output_materials = openmc.Materials()
 
     # Stainless steel 316L (approximate weight fractions)
     ss316 = openmc.Material(name="SS316L", temperature=600)
@@ -74,8 +75,13 @@ def build_materials():
     shield_mix = openmc.Material.mix_materials(
         [water, ss316], fracs=[0.60, 0.40], percent_type='vo', name='ShieldMix')
 
-    mats.extend([ss316, be, lipb, water, concrete, shield_mix])
-    return mats
+    output_materials.append(ss316)
+    output_materials.append(be)
+    output_materials.append(lipb)
+    output_materials.append(shield_mix)
+    output_materials.append(concrete)
+    
+    return output_materials
 
 
 def build_geometry(mats):
@@ -115,13 +121,14 @@ def build_geometry(mats):
     region_outside = +cyl_bio     & -outer_boundary
 
     # Cells
-    c_plasma   = openmc.Cell(region=region_plasma)
-    c_fw       = openmc.Cell(region=region_fw_only,   fill=mats["SS316L"])  # first wall steel
-    c_be       = openmc.Cell(region=region_be_only,   fill=mats["Be"])      # Be multiplier
-    c_blanket  = openmc.Cell(region=region_blanket,   fill=mats["Li17Pb83"])# breeder
-    c_shield   = openmc.Cell(region=region_shield,    fill=mats["ShieldMix"])# shield
-    c_bio      = openmc.Cell(region=region_bio,       fill=mats["Concrete"]) # bioshield
-    c_out      = openmc.Cell(region=region_outside)   # vacuum to boundary
+    c_plasma = openmc.Cell(region=region_plasma)
+
+    c_fw = openmc.Cell(region=region_fw_only, fill=mats[0])  # first wall steel
+    c_be = openmc.Cell(region=region_be_only, fill=mats[1])  # Be multiplier
+    c_blanket = openmc.Cell(region=region_blanket, fill=mats[2]) # breeder
+    c_shield = openmc.Cell(region=region_shield, fill=mats[3])  # shield
+    c_bio = openmc.Cell(region=region_bio, fill=mats[4])  # bioshield
+    c_out = openmc.Cell(region=region_outside)  # vacuum to boundary
 
     univ = openmc.Universe(cells=[c_plasma, c_fw, c_be, c_blanket, c_shield, c_bio, c_out])
 
@@ -143,14 +150,14 @@ def build_settings():
     settings = openmc.Settings()
     settings.run_mode = 'fixed source'
 
-    # 14.1 MeV DT point source at the center (isotropic)
+    # 2.0 MeV DT point source at the center (isotropic)
     src = openmc.Source()
     src.space = openmc.stats.Point((0.0, 0.0, 0.0))
     src.angle = openmc.stats.Isotropic()
-    src.energy = openmc.stats.Discrete([14.1e6], [1.0])
+    src.energy = openmc.stats.Discrete([2.e6], [1.0])
     settings.source = src
 
-    settings.particles = int(3e6)   # adjust as needed
+    settings.particles = int(1e2)   # adjust as needed
     settings.batches = 30
     settings.output = {'tallies': True}
     settings.max_lost_particles = int(1e7)
@@ -183,7 +190,7 @@ def build_tallies(cells):
     rr.filters = [openmc.CellFilter(list(cells.values()))]
     # Common activation-related reactions (total over material):
     # OpenMC accepts ENDF MT names; use standard aliases where available
-    rr.scores = ['(n,gamma)', '(n,p)', '(n,alpha)']
+    rr.scores = ['(n,gamma)', '(n,p)', '(n,a)']
     tallies.append(rr)
 
     return tallies, edges
@@ -232,7 +239,8 @@ def dump_reaction_rates(sp, cells):
     rows = []
     for i, c_id in enumerate(t.filters[0].bins):
         name = id_to_name.get(c_id, f"cell_{c_id}")
-        vals = t.mean[i, :]
+        vals = t.mean[i, :][0]  # changed to 0th element
+        print(vals)
         rows.append({
             'region': name,
             'n_gamma_rate_per_source': float(vals[0]),
@@ -247,9 +255,19 @@ def dump_reaction_rates(sp, cells):
 # Main #
 ########
 if __name__ == "__main__":
+    
+    print("building mats...")
     materials = build_materials()
+
+    print("building geometry...")
     geometry, cells = build_geometry(materials)
+
+    print("building settings...")
+    print("using INTERPOLATION for temperature-dependent XS")
     settings = build_settings()
+    settings.temperature = {'method': 'interpolation'}
+
+    print("building tallies...")
     tallies, edges = build_tallies(cells)
 
     materials.export_to_xml()

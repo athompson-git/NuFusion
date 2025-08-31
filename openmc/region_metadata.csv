@@ -1,0 +1,7 @@
+region,material,bbox_volume_m3
+plasma,void,2.0
+first_wall,SS316L,2.1632000000000002
+be,Be,2.5992000000000006
+blanket,Li17Pb83,15.015200000000002
+shield,ShieldMix,37.6712
+bioshield,Concrete,107.7512

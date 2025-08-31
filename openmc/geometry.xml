@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1" material="void" region="-1 7 -8" universe="1"/>
+  <cell id="2" material="1" region="1 -2 7 -8" universe="1"/>
+  <cell id="3" material="2" region="2 -3 7 -8" universe="1"/>
+  <cell id="4" material="3" region="3 -4 7 -8" universe="1"/>
+  <cell id="5" material="6" region="4 -5 7 -8" universe="1"/>
+  <cell id="6" material="5" region="5 -6 7 -8" universe="1"/>
+  <cell id="7" material="void" region="6 -9" universe="1"/>
+  <surface coeffs="0.0 0.0 0.5" id="1" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 0.52" id="2" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 0.5700000000000001" id="3" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 1.37" id="4" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 2.17" id="5" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 3.67" id="6" type="z-cylinder"/>
+  <surface coeffs="-1.0" id="7" type="z-plane"/>
+  <surface coeffs="1.0" id="8" type="z-plane"/>
+  <surface boundary="vacuum" coeffs="0.0 0.0 0.0 7.34" id="9" type="sphere"/>
+</geometry>
